@@ -26,12 +26,11 @@ export const userSlice = createSlice({
             state.value = state.value.filter((user) => user.id !== action.payload)
         },
         updateUsername: (state, action: PayloadAction<User>) => {
-            state.value.map((user) => {
-                if(user.id === action.payload.id) {
-                    user.username = action.payload.username;
-                }
-            })
-        }
+            const userToUpdate = state.value.find((user) => user.id === action.payload.id);
+            if (userToUpdate) {
+              userToUpdate.username = action.payload.username;
+            }
+          },
     }
 });
 
